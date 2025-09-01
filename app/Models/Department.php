@@ -10,7 +10,7 @@ class Department extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $guarded = ['id','created_at'];
 
     public function employees(): HasMany
     {

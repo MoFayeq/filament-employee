@@ -10,18 +10,7 @@ class Employee extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'first_name',
-        'last_name',
-        'address',
-        'department_id' ,
-        'country_id' ,
-        'city_id' ,
-        'state_id',
-        'zip_code' ,
-        'birth_date' ,
-        'hire_date' ,
-    ];
+    protected $guarded = ['id','created_at'];
 
     public function department(): BelongsTo
     {

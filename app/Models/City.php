@@ -11,7 +11,7 @@ class City extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'state_id'];
+    protected $guarded = ['id','created_at'];
 
     public function state(): BelongsTo
     {

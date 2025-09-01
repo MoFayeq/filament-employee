@@ -10,7 +10,7 @@ class Country extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'country_code'];
+    protected $guarded = ['id','created_at'];
 
     public function employees(): HasMany
     {
