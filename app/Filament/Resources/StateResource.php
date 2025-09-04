@@ -24,18 +24,20 @@ class StateResource extends Resource
     protected static ?string $modelLabel = 'Employees State';
 
     protected static ?string $navigationGroup = 'System Navigation';
+    protected static ?int $navigationGroupSort = 3;
 
     protected static ?string $slug = 'states';
-
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 5;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('country_id')
-                    ->required()
-                    ->numeric(),
+                Forms\Components\Select::make('country_id')
+                    ->relationship('country', 'name')
+                    ->searchable()
+                    ->preload()
+                    ->required(),
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),

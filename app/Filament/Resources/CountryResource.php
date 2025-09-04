@@ -25,15 +25,26 @@ class CountryResource extends Resource
 
     protected static ?string $navigationGroup = 'System Navigation';
 
+    protected static ?int $navigationGroupSort = 3;
+
     protected static ?string $slug = 'countries';               // route name
 
-    protected static ?int $navigationSort = 1;
+    protected static ?int $navigationSort = 4;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('name')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('code')
+                    ->required()
+                    ->maxLength(3),
+                Forms\Components\TextInput::make('phonecode')
+                    ->required()
+                    ->numeric()
+                    ->maxLength(5),
             ]);
     }
 

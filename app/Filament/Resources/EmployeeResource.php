@@ -21,10 +21,36 @@ class EmployeeResource extends Resource
 
     protected static ?string $navigationGroup = 'Employees Management';
 
+    protected static ?int $navigationGroupSort = 2;
+    protected static ?int $navigationSort = 2;
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
+                Forms\Components\Section::make('Locations Data')
+                    ->description('Put Location Details here')
+                    ->schema([
+                        Forms\Components\Select::make('country_id')
+                            ->relationship('country', 'name')
+                            ->searchable()
+                            ->preload()
+                            ->required(),
+                        Forms\Components\Select::make('state_id')
+                            ->relationship('state', 'name')
+                            ->searchable()
+                            ->preload()
+                            ->required(),
+                        Forms\Components\Select::make('city_id')
+                            ->relationship('city', 'name')
+                            ->searchable()
+                            ->preload()
+                            ->required(),
+                        Forms\Components\Select::make('department_id')
+                            ->relationship('department', 'name')
+                            ->searchable()
+                            ->preload()
+                            ->required(),
+                    ])->columns(2),
                 Forms\Components\Section::make('User Name')
                     ->description('Put User Name Details here')
                     ->schema([

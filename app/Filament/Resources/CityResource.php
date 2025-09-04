@@ -25,16 +25,19 @@ class CityResource extends Resource
 
     protected static ?string $navigationGroup = 'System Navigation';
 
-    protected static ?string $slug = 'cities';
+    protected static ?int $navigationGroupSort = 3;
 
-    protected static ?int $navigationSort = 3;
+    protected static ?string $slug = 'cities';
+    protected static ?int $navigationSort = 6;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('state_id')
+                 Forms\Components\Select::make('state_id')
                     ->relationship('state', 'name')
+                    ->searchable()
+                    ->preload()
                     ->required(),
                 Forms\Components\TextInput::make('name')
                     ->required()

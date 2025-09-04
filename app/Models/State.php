@@ -11,4 +11,9 @@ class State extends Model
 
     protected $guarded = ['id','created_at'];
 
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
 }
