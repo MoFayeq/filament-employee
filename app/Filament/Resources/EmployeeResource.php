@@ -23,35 +23,35 @@ class EmployeeResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('country_id')
-                    ->relationship('country', 'name')
-                    ->required(),
-                Forms\Components\Select::make('state_id')
-                    ->relationship('state', 'name')
-                    ->required(),
-                Forms\Components\Select::make('city_id')
-                    ->relationship('city', 'name')
-                    ->required(),
-                Forms\Components\Select::make('department_id')
-                    ->relationship('department', 'name')
-                    ->required(),
-                Forms\Components\TextInput::make('first_name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('last_name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('address')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('zip_code')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\DatePicker::make('hire_date')
-                    ->required(),
-                Forms\Components\DatePicker::make('birth_date')
-                    ->required(),
-            ]);
+                Forms\Components\Section::make('User Name')
+                    ->description('Put User Name Details here')
+                    ->schema([
+                        Forms\Components\TextInput::make('first_name')
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('last_name')
+                            ->required()
+                            ->maxLength(255),
+                    ])->columns(2),
+                Forms\Components\Section::make('Addresss Details')
+                    ->description('Put Your Address Details Here')
+                    ->schema([
+                        Forms\Components\TextInput::make('address')
+                        ->required()
+                        ->maxLength(255),
+                    Forms\Components\TextInput::make('zip_code')
+                        ->required()
+                        ->maxLength(255),
+                    ])->columns(2),
+                Forms\Components\Section::make('Dates')
+                        ->description('Dates Required')
+                        ->schema([
+                            Forms\Components\DatePicker::make('hire_date')
+                                ->required(),
+                            Forms\Components\DatePicker::make('birth_date')
+                                ->required(),
+                        ])->columns(2),
+                    ]);
     }
 
     public static function table(Table $table): Table
