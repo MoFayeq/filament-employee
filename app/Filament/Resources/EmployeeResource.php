@@ -105,16 +105,12 @@ class EmployeeResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('country.name')
-                    ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('state.name')
-                    ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('city.name')
-                    ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('department.name')
-                    ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('first_name')
                     ->searchable(),
