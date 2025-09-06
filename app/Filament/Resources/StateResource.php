@@ -5,8 +5,11 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\StateResource\Pages;
 use App\Filament\Resources\StateResource\RelationManagers;
 use App\Models\State;
+use Dom\Text;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -51,14 +54,14 @@ class StateResource extends Resource
                 Tables\Columns\TextColumn::make('country.name')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('name')
-                    ->label('State Name')
+                    //->label('State Name')
                     ->sortable(),
                     //->searchable(isIndividual:true,isGlobal:false),  individual to search only for column and global to disable from global search
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->hidden(auth()->user()->email === 'admin@example.com') // remove from this admin
-                    ->visible(auth()->user()->email === 'admin2@example.com') // allow this only to show
+                    //->visible(auth()->user()->email === 'admin2@example.com') // allow this only to show
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
@@ -69,6 +72,7 @@ class StateResource extends Resource
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
@@ -77,6 +81,15 @@ class StateResource extends Resource
                 ]),
             ]);
     }
+
+    // public static function infolist(Infolist $infolist): Infolist
+    // {
+    //     return $infolist
+    //         ->schema([
+    //             TextEntry::make('country.name'),
+    //             TextEntry::make('name'),
+    //         ]);
+    // }
 
     public static function getRelations(): array
     {
